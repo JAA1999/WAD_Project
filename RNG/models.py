@@ -22,7 +22,7 @@ class Game(models.Model):
     num_user_ratings = models.IntegerField()
     critic_score = models.FloatField()
     num_critic_ratings = models.IntegerField()
-    age_rating = models.CharField(max_length = 16)
+    age_rating = models.CharField(max_length = 4)
     description = models.TextField()
 
     # might need list[fk] for ratings
