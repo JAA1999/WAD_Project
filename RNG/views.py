@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from rango.webhose_search import run_query
+from RNG.webhose_search import run_query
 
 def index(request):
     context_dict={}
