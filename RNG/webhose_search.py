@@ -43,6 +43,14 @@ def run_query(search_terms,size=20):
     except:
         print("Error when querying the Webhose API")
     return results
+
+if __name__ == '__main__':
+    try:
+        query=sys.argv[1]
+    except IndexError:
+        query=input("Enter a query to search:\n")
+    for result in run_query(query):
+        print(f"Title: {result['title']}\nSummary: {result['summary']}\n")
                         
 
 
