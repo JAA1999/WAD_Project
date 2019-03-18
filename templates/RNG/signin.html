@@ -21,14 +21,17 @@
 		<br /><br />
 		<b>Please enter your username and password below to sign in.</b>
 		<br /><br />
-			<form id="signin_form" method="post" action="{% url 'signin' %}">
+			<form id="signin_form" method="post" action="{% url 'signin' %}" enctype="multipart/form-data">
 				{% csrf_token %}
+				{{ signin_form.as_p }}
 				Username: <input type="text" name="username" value="" size="50" />
 				<br /><br />
 				Password: <input type="password" name="password" value="" size="50" />
 				<br /><br />
-				<input type="submit" value="submit" />
+				<input type="submit" name="submit" value="Sign In" />
 			</form>
+			<br>
+		Don't have an account already? <a href="{% url 'signup' %}">Sign up here.</a>
 		</div>
 	</body>
 {% endblock %}
