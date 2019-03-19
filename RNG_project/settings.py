@@ -33,7 +33,7 @@ SECRET_KEY = '^_-e^rq#aaq(9*pj-o6+#)f37vugj9v7y6s9c=eus(=l4u$pp^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ratenewgameswad2.pythonanywhere.com','127.0.0.1']
 
 
 # Application definition
@@ -151,3 +151,5 @@ ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN= True
 LOGIN_REDIRECT_URL = "/rng/"
 LOGIN_URL='/accounts/login/'
+
+DATE_INPUT_FORMATS = ['%d-%m-%Y']

@@ -3,7 +3,7 @@ from django.utils import timezone
 import uuid
 
 from django.template.defaultfilters import slugify
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 
 
 # Database Objects
@@ -11,24 +11,30 @@ from django.contrib.auth.models import AbstractUser
 
 # ID refs should autogenerate
 
-class User(models.Model):
-    username = models.CharField(max_length = 16, unique = True, primary_key = True)
-    password = models.CharField(max_length = 32)    # uses password hasher in the forms.py
-    first_name = models.CharField(max_length=128)
-    last_name = models.CharField(max_length=128)
+class UserProfile(models.Model):
+	
+    user = models.OneToOneField(User)
     critic = models.BooleanField(default=False)
-    email = models.EmailField(null=True, blank=True)
 	
     website = models.URLField(null=True, blank=True)
+    picture = models.ImageField(upload_to='profile_images', blank=True)
     description = models.TextField(null=True, blank=True)
     timestamp = models.DateTimeField(default=timezone.now, blank=True)
-	
+
+    slug = models.SlugField(max_length=40)
+
     def __str__(self):
-         return self.username
+         return self.user.username
+
+    def save(self, *args, **kwargs):
+        self.slug=slugify(self.user.username)
+        super(UserProfile,self).save(*args, **kwargs)
 
 class Category(models.Model):
     name = models.CharField(max_length=64)
-    supercategory = models.ForeignKey('self', on_delete=models.CASCADE)
+    supercategory = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
+
+    slug = models.SlugField(max_length=40)
 
     def save(self, *args, **kwargs):
         self.slug=slugify(self.name)
@@ -53,6 +59,12 @@ class Game(models.Model):
     description = models.TextField()
     releasedate = models.DateField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    slug = models.SlugField(max_length=40)
+
+    def save(self, *args, **kwargs):
+        self.slug=slugify(self.name)
+        super(Game, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
