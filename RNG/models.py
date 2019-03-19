@@ -66,7 +66,7 @@ class Category(models.Model):
 class Comment(models.Model):
     ID = models.IntegerField(primary_key=True, unique=True)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
     text = models.TextField()
     date_created = models.DateTimeField(default=datetime.now(), blank = True)
 

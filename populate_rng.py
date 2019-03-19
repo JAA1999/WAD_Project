@@ -166,3 +166,38 @@ def populate():
         "num_critic_ratings": 5,
         "age_rating": 3}
     ]
+
+    cats={"Action":{"games":action, "reviews":0},
+        "RPG":{"games":rpg, "reviews":0},
+        "Strategy":{"games":strategy, "reviews":0},
+        "Puzzle":{"games":puzzle, "reviews":0},
+        "Sports":{"games":sports, "reviews":0},
+        "MMO":{"games":mmo, "reviews":0},
+        "Simulation":{"games":simulation, "reviews":0},
+    }
+
+    for cat, cat_data in cats.items():
+        c=add_cat(cat, cats[cat]["reviews"])
+        for p in cat_data["games"]:
+            add_game(c,p["name"],p["url"],p["reviews"])
+    for c in Category.objects.all():
+        for p in Game.objects.filter(category=c):
+            print("- {0} - {1}".format(str(c),str(p)))
+
+    def add_game(cat, title, url, reviews=0):
+        p = Game.objects.get_or_create(category=cat,name=name)
+        p.ID=ID
+        
+        p.reviews=reviews
+        p.save()
+        return p
+
+    def add_cat(name,views):
+        c=Category.objects.get_or_create(name=name)[0]
+        c.views=views
+        c.save()
+        return c
+
+    if __name__ == '__main__':
+        print("*** Starting RNG population script ***")
+        populate()
