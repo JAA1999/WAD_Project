@@ -22,8 +22,22 @@ class Users(models.Model):
     def __str__(self):
          return self.username
 
+class Category(models.Model):
+    name = models.CharField(max_length=64)
+    supercategory = models.ForeignKey('self', on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        self.slug=slugify(self.name)
+        super(Category,self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name_plural='Categories'
+
+    def __str__(self):
+        return self.name
 
 class Game(models.Model):
+    category=models.ForeignKey(Category)
     ID = models.IntegerField(primary_key = True, unique = True)
     name = models.CharField(max_length = 64)
     user_score = models.FloatField()
@@ -46,22 +60,6 @@ class Rating(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     comment = models.TextField()
     date_created = models.DateTimeField(default=datetime.now(), blank = True)
-
-
-class Category(models.Model):
-    name = models.CharField(max_length=64)
-    game = models.ForeignKey(Game, on_delete=models.CASCADE)
-    supercategory = models.ForeignKey('self', on_delete=models.CASCADE)
-
-    def save(self, *args, **kwargs):
-        self.slug=slugify(self.name)
-        super(Category,self).save(*args, **kwargs)
-
-    class Meta:
-        verbose_name_plural='Categories'
-
-    def __str__(self):
-        return self.name
 
 class Comment(models.Model):
     ID = models.IntegerField(primary_key=True, unique=True)

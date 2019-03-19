@@ -185,9 +185,13 @@ def populate():
             print("- {0} - {1}".format(str(c),str(p)))
 
     def add_game(cat, title, url, reviews=0):
-        p = Game.objects.get_or_create(category=cat,name=name)
-        p.ID=ID
-        
+        p = Game.objects.get_or_create(category=cat,ID=ID)
+        p.name=name
+        p.user_score=user_score
+        p.num_user_ratings=num_user_ratings
+        p.critic_score=critic_score
+        p.num_critic_ratings=num_critic_ratings
+        p.age_rating=age_rating
         p.reviews=reviews
         p.save()
         return p
