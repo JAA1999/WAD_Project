@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from RNG.webhose_search import run_query
+
 
 from RNG.models import Category, Game
 from RNG.forms import CategoryForm, UserForm, GameForm
@@ -94,7 +94,7 @@ def user_logout(request):
 def game(request):
     context_dict={}
     return render(request, 'RNG/game.html', context=context_dict)
-
+"""
 def search(request):
     result_list=[]
     query=None
@@ -104,7 +104,7 @@ def search(request):
             #runs webhose search function
             result_list = run_query(query)
     return render(request,'RNG/search.html',{'result_list':result_list,'search_query':query})
-
+"""
 def show_category(request, category_name_slug):
 	context_dict={}
 	try:
@@ -143,3 +143,5 @@ def add_game(request, category_name_slug):
 	context_dict={'form':form, 'category': category}
 	return render(request, "RNG/add_game.html", context_dict)
 
+def testCat(request):
+    return render(request, "RNG/game_or_category_block.html")

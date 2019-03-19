@@ -10,12 +10,22 @@ body{
       background-color: #ffffff;
 }
 
+div{
+      font-family: arial;
+}
+
 img{
       width: auto; /* for IE8 support*/
       max-width: 100%;
       height: auto;
 }
 
+pre{
+      padding: 5px;
+}
+
+
+/*header elements*/
 .head{
       max-width: 100vw;
       background-color: #323232;
@@ -38,10 +48,6 @@ img{
       box-shadow: 0 4px 6px 0 #797979;
 }
 
-
-.body{
-      max-width: 960px;
-}
 .sticky{
       position: sticky;
       right:0;
@@ -137,12 +143,6 @@ img{
       box-shadow: inset 0 0 6px #000000;  
 }
 
-.giant-box{
-      height: 3000px;
-      width: 5px;
-      background-color:#202020;    
-} 
-
 .line{
       position: relative;
       margin-top: 15px;
@@ -170,6 +170,11 @@ img{
       position: absolute;
       right: 60px;
       top: 55px;
+}
+
+/*body elements*/
+.body{
+      max-width: 960px;
 }
 
 
@@ -345,7 +350,41 @@ img{
       background-color: #f1f1f1;
       box-shadow: 4px 4px 8px 0px #696969;
 }
-
-pre{
-      padding: 5px;
+.pt{
+      margin-top: 10px;
 }
+
+.rating{
+      margin-top: 10px;
+      width: 50px;
+      border: 2px #000000;
+      border-radius: 4px;
+      font-family: arial;
+      text-align: center;
+      background-color: #f1f1f1;
+}
+
+.fc{
+      padding: 10px 0;
+}
+/*game or category container stuff for the category and game page*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

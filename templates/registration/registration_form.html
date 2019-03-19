@@ -18,22 +18,21 @@
 {% block body_block %}
 	<body>
 		<div class="body centre">
-		<div class= "title2 ib"><u>Sign Up</u></div>
-		<br /><br />
-		{% if registered %}
-			<b>You are now registered! Follow this link to
-			<a href="{% url 'signin' %}">sign in.</a></b>
-			<br />
-		{% else %}
-			<b>Please fill out the forms below to sign up.</b>
-			<br />
-			<form method="post" action=".">	
-				{% csrf_token %}
-				{{ form.as_p }}
-				<input type="submit" name="submit" value="Sign Up" />
-			</form>
-			Already have an account? <a href="{% url 'signin' %}">Sign in here!</a>
-		{% endif %}
+    		<div class= "title2 ib"><u>Sign Up</u></div>
+    		<br /><br />
+    		{% if registered %}
+    			<b>You are now registered! Follow this link to<a href="{% url 'signin' %}">sign in.</a></b>
+    			<br />
+    		{% else %}
+    			<b>Please fill out the forms below to sign up.</b>
+    			<br />
+    			<form method="post" action=".">	
+    				{% csrf_token %}
+    				{{ form.as_p }}
+    				<input type="submit" name="submit" value="Sign Up" />
+    			</form>
+    			Already have an account? <a href="{% url 'signin' %}">Sign in here!</a>
+    		{% endif %}
 		</div>
 	</body>
 {% endblock %}

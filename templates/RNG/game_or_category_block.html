@@ -1,25 +1,37 @@
+{% extends 'RNG/base.html' %}
+
 {% load staticfiles %}
 
-<div class = "game_or_category_container">
-    <div class = "image_container">
-        <!--image of item-->
-    </div>
-    <div class = "item_content">
-        <div class = "item_title">
-            <!--title with link to the items page-->
+{% block body_block %}
+<div class="body centre">
+    <div class = "mostViewed centre">
+        <a href="#"></a><!--link to game or category!-->
+        <div class = "MVimageBlock ib">
+            <a href="#"></a><!--link to game or category!-->
+            <img src={% static "images/largeGame.jpg"%}>
         </div>
-        {% if game %} <!-- if item is a game-->
-        <div class = "rating">
-
-        </div>
-        {% endif %}
-        
-        <div class = "category">
-            <!--show category, if item is a category, show list of categories-->
-            <!--make sure list is a link to the population-->
-        </div>
-        <div class = "description">
-            <!--display description-->
+        <div class = "MVtext">
+            <div class = "MVTitle">{game.title}</div> <!--replace with correct django!-->            
+            <div class = "category">
+                <!--show category, if item is a category, show list of categories-->
+                <!--make sure list is a link to the population-->
+            </div>
+            {% if category %}
+            <div class = "MVdescription pt">
+                <pre>{game.description}</pre><!-- replace this with category description!-->
+            </div>
+            {% endif %}
+            {% if game %}
+            <div class = "MVdescription pt">
+                <pre>{game.description}</pre><!-- replace this with game description!-->
+            </div>
+            <!-- if item is a game-->
+            <div class="rating_container centre">
+                <div class="ib">Rating out of 10</div>
+                <div class = "rating ib"><p class="fc centre">10</p></div><!--replace 10 with the rating field!-->
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
+{% endblock %}
