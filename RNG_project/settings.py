@@ -33,7 +33,7 @@ SECRET_KEY = '^_-e^rq#aaq(9*pj-o6+#)f37vugj9v7y6s9c=eus(=l4u$pp^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ratenewgameswad2.pythonanywhere.com']
+ALLOWED_HOSTS = ['ratenewgameswad2.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
