@@ -1,0 +1,12 @@
+<<<<<<< HEAD
+# pycache files
+*.pyc
+/RNG/migrations/*
+# Database file
+*.sqlite3
+=======
+/.idea
+/RNG/__pycache__
+/RNG_project/__pycache__
+/.vscode
+>>>>>>> e74bfe6f49fe583db30457aaebfa75636f5fde19

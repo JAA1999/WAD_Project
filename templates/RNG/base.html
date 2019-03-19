@@ -11,63 +11,78 @@
 		{% endblock %}
 	{% load static %}
 	<link href={% static "css/style.css" %} rel="stylesheet" type="text/css" />
-	<link href= {% static "css/buttons.css" %} rel="stylesheet" type="text/css" />
-
+    
   </head>
   <body>
     <div class="head">
-		<div class="top-square centre">
+
+      <div class="top-square centre">
       
-			<div class="title ib">
-				<p class="title1 ib">RNG.</p>
-				<div class= "title2 ib">com</div>
-			</div>
+        <div class="title ib">
+          <p class="title1 ib">RNG.</p>
+          <div class= "title2 ib">com</div>
+        </div>
       
-			<div class="signinBlock ib">
-				<div><button class="signin ">Sign In</button></div>
-				<li><a href="{% url 'signup' %}"><div><button class="signin ">Sign Up</button></div></a></li>
-			</div>
+        <div class="signinBlock ib">
+			{% if user.is_authenticated %}
+				<div class="Welcome"><u>Welcome {{ user.username }}</u></div>
+				<a href="{% url 'signout' %}"><button class="signin ">Sign Out</button></div></a>
+			{% else %}
+				<a href="{% url 'auth_login' %}"><div><button class="signin ">Sign In</button></div></a>
+				<a href="{% url 'registration_register' %}"><div><button class="signin ">Sign Up</button></div></a>
+			{% endif %}
+        </div>
         
-		</div>
+      </div>
+    </div>
 
-		<div class="top-square2 sticky">
-
-			<div class="dropdown padleft">
-				<li><a href="{% url 'index' %}"><button class="dropbtn">Home</button></a></li>
-				<div class="dropdown-content">
-					<a href="#">Link 1</a>
-					<a href="#">Link 2</a>
-					<a href="#">Link 3</a>
-				</div>
-			</div>
+    <div class="head2">
+      <div class="top-square2 sticky centre">
         
-			<div class="line"></div>
-
-			<div class="dropdown">
-				<li><a href="{% url 'about' %}"><button class="dropbtn">About</button></a></li>
-				<div class="dropdown-content">
-					<a href="#">Link 1</a>
-					<a href="#">Link 2</a>
-					<a href="#">Link 3</a>
-				</div>
-			</div>
+        <div class="line marginLeft"></div>
         
-			<div class="line"></div>
+        <div class="dropdown">
+          <a href="{% url 'index' %}"><button class="dropbtn">Home</button></a>
+          <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+        </div>
+        
+        <div class="line"></div>
 
-			<div class="dropdown">
-				<li><a href="{% url 'category' %}"><button class="dropbtn">Categories</button></a></li>
-				<div class="dropdown-content">
-					<a href="#">Link 1</a>
-					<a href="#">Link 2</a>
-					<a href="#">Link 3</a>
-				</div>
-			</div>
+        <div class="dropdown">
+          <a href="{% url 'about' %}"><button class="dropbtn">About</button></a>
+          <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+        </div>
+        
+        <div class="line"></div>
 
-			<form class="ib search padleft">
-				<input type="text" name="search" placeholder="Search">
-			</form>
-		</div>
-	</div>
+        <div class="dropdown">
+          <a href="{% url 'category' %}"><button class="dropbtn">Categories</button></a>
+          <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+        </div>
+
+        <div class="line"></div>
+        
+        <div class="ib searchBlock padleft">
+          <form class="ib">
+            <input class="input" type="text" name="search" placeholder="Search">
+          </form>
+          <button class="ib searchButton">GO</button>
+        </div>
+        
+      </div>
+    </div>
 
 	{% block body_block %}
 	{% endblock %}

@@ -1,0 +1,25 @@
+{% load staticfiles %}
+
+<div class = "game_or_category_container">
+    <div class = "image_container">
+        <!--image of item-->
+    </div>
+    <div class = "item_content">
+        <div class = "item_title">
+            <!--title with link to the items page-->
+        </div>
+        {% if game %} <!-- if item is a game-->
+        <div class = "rating">
+
+        </div>
+        {% endif %}
+        
+        <div class = "category">
+            <!--show category, if item is a category, show list of categories-->
+            <!--make sure list is a link to the population-->
+        </div>
+        <div class = "description">
+            <!--display description-->
+        </div>
+    </div>
+</div>

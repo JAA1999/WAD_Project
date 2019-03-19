@@ -7,17 +7,133 @@
 {% endblock %}
 
 {% block body_block %}
-    <div class="body">
-	
-      <div>
-        <p> test</p>
-        <p> test</p>
-        <p> test</p>
-        <p> test</p>
-        <p> test</p>
-        <p> test</p>
-        <!--<img class="bg" src="bg.jpg" alt="test">!-->
+     <div class="body centre">
+      
+      <div class="gameContainer centre">
+        <div class="GCTitle">New Releases</div>
+        <div class="GCgroup">
+            
+          <!--copy this for the repeatable block
+          Editing with django tags where appropriate
+          
+          <div class="GCGame">
+            <div class="GCImg">
+              <a href="{game.url}"
+              <img src="game.jpg"> //the location in media that the image for the game is
+              <p class="GCName"><b>{game.title}</b></p>
+            </div>
+          </div>
+
+          and remove the html that looks like this
+
+          !-->
+          
+          <div class="GCGame">
+            <div class="GCImg">
+              <img src={% static "images/game.jpg"%}>
+              <p class="GCName"><b>game name</b></p>
+            </div>
+          </div>
+
+          <div class="GCGame">
+            <div class="GCImg">
+              <img src={% static "images/game.jpg"%}>
+              <p class="GCName"><b>game name</b></p>
+            </div>
+          </div>
+
+          <div class="GCGame">
+            <div class="GCImg">
+              <img src={% static "images/game.jpg"%}>
+              <p class="GCName"><b>game name</b></p>
+            </div>
+          </div>
+
+          <div class="GCGame">
+            <div class="GCImg">
+              <img src={% static "images/game.jpg"%}>
+              <p class="GCName"><b>game name</b></p>
+            </div>
+          </div>
+
+          <div class="GCGame">
+            <div class="GCImg">
+              <img src={% static "images/game.jpg"%}>
+              <p class="GCName"><b>game name</b></p>
+            </div>
+          </div>
+
+        </div> 
       </div>
-      <div class="giant-box"></div>
-    </div>
+
+      <div class="gameContainer centre">
+        <div class="GCTitle">Popular</div>
+        <div class="GCgroup">
+
+          <!--copy this for the repeatable block
+          Editing with django tags where appropriate
+          
+          <div class="GCGame">
+            <div class="GCImg">
+              <a href="{game.url}"
+              <img src="game.jpg"> //the location in media that the image for the game is
+              <p class="GCName"><b>{game.title}</b></p>
+            </div>
+          </div>
+
+          and remove the html that looks like this
+
+          !-->
+
+          <div class="GCGame">
+            <div class="GCImg">
+              <img src={% static "images/game.jpg"%}>
+              <p class="GCName"><b>game name</b></p>
+            </div>
+          </div>
+
+          <div class="GCGame">
+            <div class="GCImg">
+              <img src={% static "images/game.jpg"%}>
+              <p class="GCName"><b>game name</b></p>
+            </div>
+          </div>
+
+          <div class="GCGame">
+            <div class="GCImg">
+              <img src={% static "images/game.jpg"%}>
+              <p class="GCName"><b>game name</b></p>
+            </div>
+          </div>
+
+          <div class="GCGame">
+            <div class="GCImg">
+              <img src={% static "images/game.jpg"%}>
+              <p class="GCName"><b>game name</b></p>
+            </div>
+          </div>
+
+          <div class="GCGame">
+            <div class="GCImg">
+              <img src={% static "images/game.jpg"%}>
+              <p class="GCName"><b>game name</b></p>
+            </div>
+          </div>
+
+        </div> 
+        
+        <div class="mostViewed centre">
+        <div class= "MVimageBlock ib">
+          <img src={% static "images/largeGame.jpg"%}><!-- this is for the django tag!-->
+        </div>
+        <div class="MVtext">
+          <div class="MVTitle"><u>Most Viewed</u></div>
+          <div class="MVname">{game.name}</div><!-- this is for the django tag!-->
+          <div class="MVdescription">
+            <pre>{game.description}</pre><!-- this is for the django tag!-->
+          </div>
+        </div>
+
+      </div>
+      </div>
 {% endblock %}

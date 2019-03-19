@@ -19,6 +19,11 @@ from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
 from RNG import views
+from registration.backends.simple.views import RegistrationView
+
+class MyRegistrationView(RegistrationView):
+	def get_success_url(self, user):
+		return '/rng/'
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
@@ -27,6 +32,8 @@ urlpatterns = [
     # with rng/ to be handled by
     # the RNG application.
     url(r'^admin/', admin.site.urls),
+	url(r'^accounts/', include('registration.backends.simple.urls')),
+	url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     # So fellas, just using the rango
     # URL mapping stuff but replacing

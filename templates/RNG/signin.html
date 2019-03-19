@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+{% extends 'RNG/base.html' %}
+{% load staticfiles %}
+
+<html>
+	<head>
+		{% block title_block %}
+			<title>Rate New Games ~ Sign Up</title>
+		{% endblock %}
+	
+	{% load static %}
+	<link href={% static "css/style.css" %} rel="stylesheet" type="text/css" />
+	<link href= {% static "css/buttons.css" %} rel="stylesheet" type="text/css" />
+	</head>
+	
+{% block body_block %}
+	<body>
+		<div class="body centre">
+		<div class= "title2 ib"><u>Sign In</u></div>
+		<br /><br />
+		{% if user.is_authenticated %}
+			<b>You are already signed in! Follow this link to the
+			<a href="{% url 'index' %}">homepage.</a></b>
+			<br />
+		{% else %}
+			<b>Please enter your username and password below to sign in.</b>
+			<br /><br />
+			<form id="user_form" method="post" action="{% url 'signin' %}" enctype="multipart/form-data">
+				{% csrf_token %}
+				Username: <input type="text" name="username" value="" size="50" />
+				<br /><br />
+				Password: <input type="password" name="password" value="" size="50" />
+				<br /><br />
+				<input type="submit" value="submit" />
+			</form>
+			<br />
+		Don't already have an account? <a href="{% url 'signup' %}">Sign up here!</a>
+		</div>
+		{% endif %}
+	</body>
+{% endblock %}
+		

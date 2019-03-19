@@ -1,27 +1,46 @@
 @font-face {
-      font-family: test;
+      font-family: "Title";
       src: url("Title.ttf");
 }
 
+/*these are overwrites of standard css*/
 body{
-      max-width: 100vw;
-      margin-top: 0px;
+      display: block;
+      margin: 0;
+      background-color: #ffffff;
+}
+
+img{
+      width: auto; /* for IE8 support*/
+      max-width: 100%;
+      height: auto;
 }
 
 .head{
       max-width: 100vw;
       background-color: #323232;
-      height: 180px;
+      height: 100px;
       position: sticky;
       right:0;
       left:0;
+      z-index: 5;
+      margin: 0 auto;
+}
+.head2{
+      max-width: 100vw;
+      background-color: #323232;
+      height: 80px;
+      position: sticky;
+      top: 0;
+      right:0;
+      left:0;
+      margin: 0 auto;
+      box-shadow: 0 4px 6px 0 #797979;
 }
 
+
 .body{
-      padding-top: 0px;
-      font-size: 100%;
       max-width: 960px;
-      margin: auto;
 }
 .sticky{
       position: sticky;
@@ -31,8 +50,6 @@ body{
 }
 
 .top-square {
-      margin-top: 0px;
-      margin-bottom: 0px;
       padding-top:0px;
       height:100px;
       background-color: #323232;
@@ -46,17 +63,17 @@ body{
       height:80px;
       background-color: #323232;
       max-width: 960px;
+      position: sticky;
+      top: 0px;
 }
 
 .centre {
-      max-width: 960px;
-      margin-right: auto;
-      margin-top: 0px;
+      margin: 0 auto;
 }
 .title1 {
       margin: 0px;
       color: #00EE00;
-      font-family: "test", "Arial";
+      font-family: "Title", "Arial";
       font-size: 80px;
       padding-top: 20px;
       padding-bottom: 0px;
@@ -66,7 +83,7 @@ body{
 .title2{
       margin: 0px;
       color: #00EE00;
-      font-family: "test", "Arial";
+      font-family: "Title", "Arial";
       font-size: 30px;
       padding-top: 20px;
       padding-bottom: 0px;
@@ -76,7 +93,7 @@ body{
       display: inline-block;
 }
 
-input{
+.input{
       padding-left: 10px;
       font-size: 20px;
       width: 180px;
@@ -86,14 +103,38 @@ input{
       outline: none;
 }
 
-input:hover {
+.input:hover {
       border: 1px solid #00EE00;     
 }
 
-.search {
+.searchBlock{
       position:absolute;
       right: 60px;
       top: 25px;
+}
+
+.search {
+      margin-bottom: 0;
+      padding-right: 5px;
+      position: relative;
+      bottom: 0;
+}
+
+.searchButton{
+      position: relative;
+      top: 0;
+      height: 28px;
+      width: 36px;
+      background-color: #00EE00;
+      border: 2px solid #000000;
+      border-radius: 4px;
+      text-align: center;
+      color: #ffffff;
+}
+
+.searchButton:hover{
+      background-color: rgb(0, 189, 0);
+      box-shadow: inset 0 0 6px #000000;  
 }
 
 .giant-box{
@@ -112,6 +153,11 @@ input:hover {
       box-shadow: 0 0 4px black;
 }
 
+.marginLeft{
+      margin-left: 65px;
+      margin-right: 0px;
+}
+
 .title:hover {
       text-shadow: 0 0 8px;
 }
@@ -124,4 +170,182 @@ input:hover {
       position: absolute;
       right: 60px;
       top: 55px;
+}
+
+
+/*The container holding the games*/
+.gameContainer{
+      max-width: 90%;
+      height: 290px;
+      background-color: #00EE00;
+      margin-top: 40px;
+      box-shadow: 4px 4px 8px 0px #696969;
+}
+
+.GCTitle{
+      padding: 10px;
+      font-size: 200%;
+      color: #323232;
+      font-family: arial;
+      text-shadow:1px 1px 3px #6d6d6d;
+      display: block;
+}
+
+/*holds the games*/
+.GCgroup{
+      display: block;
+}
+
+/*Holds individual game*/
+.GCGame{
+      display: inline-block;
+      text-align: center;
+      padding-left: 25px;
+}
+.GCImg{
+      max-width: 140px;
+      max-height: 191px;
+}
+
+.GCImg:hover{
+      box-shadow: 2px 2px 6px 0px #696969;
+}
+
+.GCName{
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 100%;
+      color: #323232;
+      margin: 4px;
+}
+
+.Welcome{
+	  margin: 1px;
+     font-family:"test", "Arial";
+     color: #00EE00;
+	  text-align: center;
+}
+
+
+.dropbtn {
+  min-width: 150px;
+  background-color: #323232;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 15px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #323232;
+  box-shadow: inset 0px 0px 6px #000000;
+  border: 1px;
+  border-radius: 3px;
+}
+
+.padleft{
+  padding-left: 65px;
+}
+
+.signinContainer{
+  position: relative;
+  right: 0;
+}
+
+.signin{
+  margin: 1px;
+  width: 160px;
+  height: 26px;
+  border: 2px solid #202020;
+  border-radius: 13px;
+  background-color: #00EE00;
+  color: #f7f7f7;
+  z-index: 2;
+}
+
+.signin:hover {
+  background-color: rgb(0, 189, 0);
+  box-shadow: inset 0 0 6px #000000; 
+}
+
+/*This is for the container at the bottom of the page*/
+.mostViewed{
+      z-index: -5;
+      max-width: 90%;
+      height: 295px;
+      margin-top: 40px;
+      margin-bottom:40px;
+      position: sticky;
+      right:0;
+      left:0;
+}
+
+.MVimageBlock{
+      height: 270px;
+      width: 198px;
+      padding: 25px;
+      padding-top: 0;
+}
+
+.MVtext{
+      width: 590px;
+      display: inline-block;
+      position:absolute;
+      top: 25px;
+}
+
+.MVTitle{
+      font-family: Arial, Helvetica, sans-serif;
+      color: #00EE00;
+      font-size: 200%;
+      text-shadow:1px 1px 3px #D1D1D1;
+}
+
+.MVname{
+      font-family: Arial, Helvetica, sans-serif;
+      color: #00EE00;
+      font-size: 100%;
+}
+
+.MVdescription{
+      width: 100%;
+      height: 130px;
+      background-color: #f1f1f1;
+      box-shadow: 4px 4px 8px 0px #696969;
+}
+
+pre{
+      padding: 5px;
 }
