@@ -28,18 +28,6 @@ def about(request):
     context_dict={}
     return render(request, 'RNG/about.html', context=context_dict)
 
-def category(request):
-	context_dict={}
-	"""try:
-		category=Category.objects.get(slug=category_name_slug)
-		games=Game.objects.filter(category=category)
-		context_dict['games']=games
-		context_dict['category']=category
-	except Category.DoesNotExist:
-		context_dict['category']=None
-		context_dict['pages']=None"""
-	return render(request, 'RNG/category.html', context_dict)
-
 def signup(request):
 	registered = False
 	
@@ -97,11 +85,49 @@ def user_login(request):
 def user_logout(request):
 	logout(request)
 	return HttpResponseRedirect(reverse('index'))
+	
+def show_categories(request):
+	context_dict={}
+	try:
+		categorylist = []
+		categorylist=Category.objects.order_by('name')
+		context_dict['category']=categorylist
+	except Category.DoesNotExist:
+		context_dict['category']=None
+	
+	#if request.method=='POST':
+		#query=request.POST['query'].strip()
+		#if query:
+			#result_list=run_query(query)
+			#context_dict['query']=query
+			#context_dict['result_list']=result_list
+	return render(request, 'RNG/show_categories.html', context_dict)
 
-
-def game(request):
-    context_dict={}
-    return render(request, 'RNG/game.html', context=context_dict)
+def category(request, category_name_slug):
+	context_dict={}
+	try:
+		category=Category.objects.get(slug=category_name_slug)
+		games = Game.objects.filter(category=category)
+		context_dict['games']=games
+		context_dict['category']=category
+	except Category.DoesNotExist:
+		context_dict['category']=None
+		context_dict['games']=None
+	#context_dict['query']=category.name
+	#result_list=[]
+	#if request.method=='POST':
+		#query=request.POST['query'].strip()
+		#if query:
+			#result_list=run_query(query)
+			#context_dict['query']=query
+			#context_dict['result_list']=result_list
+	return render(request, 'RNG/category.html', context_dict)
+	
+def game(request, category_name_slug, game_name_slug):
+	context_dict={}
+	game = Game.objects.get(slug=game_name_slug)
+	context_dict['game']=game
+	return render(request, 'RNG/game.html', context=context_dict)
 
 def search(request):
     result_list=[]
@@ -113,25 +139,7 @@ def search(request):
             result_list = run_query(query)
     return render(request,'RNG/search.html',{'result_list':result_list,'search_query':query})
 
-def show_category(request, category_name_slug):
-	context_dict={}
-	try:
-		category=Category.objects.get(slug=category_name_slug)
-		games = Game.objects.filter(category=category)
-		context_dict['games']=games
-		context_dict['category']=category
-	except Category.DoesNotExist:
-		context_dict['category']=None
-		context_dict['games']=None
-	context_dict['query']=category.name
-	result_list=[]
-	if request.method=='POST':
-		query=request.POST['query'].strip()
-		if query:
-			result_list=run_query(query)
-			context_dict['query']=query
-			context_dict['result_list']=result_list
-	return render(request, 'RNG/category.html', context_dict)
+
 
 def add_game(request, category_name_slug):
 	try:

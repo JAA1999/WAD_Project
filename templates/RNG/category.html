@@ -1,38 +1,39 @@
 {% extends 'RNG/base.html' %}
 {% load staticfiles %}
 
-{% block title_block %}
-	{{ category.name }}
-{% endblock %}
 
 {% block body_block %}
-	{% if category %}
-		<h1>{{ category.name }}</h1>
-		{% if pages %}
-			<ul>
-				{% for page in pages %}
-					<li><a href="{{ page.url }}">{{ page.title }}</a></li>
-				{% endfor %}
-			</ul>
-		{% else %}
-			<strong>No pages currently in category</strong>
-		{% endif %}
+<div class="body centre">
+	{% if games %}
+		{% for game in games %}
+		<a href="{% url 'game' category.slug game.slug %}">TestLink</a><br/>
+		<div class = "mostViewed centre">    
+			<div class = "MVimageBlock ib">
+				<img src={% static "images/largeGame.jpg"%}>
+			</div>
+			<div class = "MVtext">
+				<div class = "MVTitle">{{game.name}}</div>        
+			</div>
+		</div>
+		{% endfor %}
 	{% else %}
-			The specified category does not exist.
+	<div class = "mostViewed centre">
+        <div class = "MVtext">
+            <div class = "MVTitle">There are no games to display.</div>            
+        </div>
+    </div>
 	{% endif %}
-	{% if category %}
-		{% if user.is_authenticated %}
+	{% if user.is_authenticated %}
 			<a href="/RNG/category/{{category.slug}}/add_game/">Add game</a><br/>
-		{% endif %}
-	{% else %}
-			A category by this name does not exist.
 	{% endif %}
+</div>
 {% endblock %}
 
-<form class="form-inline" id="user_form" method="post" action="{% url 'show_category' category.slug %}">
+<!--<form class="form-inline" id="user_form" method="post" action="{% url 'show_category' category.slug %}">
 	{% csrf_token %}
 	<div class="form-group">
 		<input class="form-control" type="text" size="50" name="query" value="{{ query }}" id="query" />
 	</div>
 	<button class="btn btn-primary" type="submit" name="submit" value="Search">Search</button>
-</form>
+</form> 
+--> 

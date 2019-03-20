@@ -18,34 +18,6 @@ from django.contrib.auth.models import AbstractUser
 
 # ID refs should autogenerate
 
-# class UserProfile(models.Model):
-	
-#     user = models.OneToOneField(User)
-#     critic = models.BooleanField(default=False)
-	
-#     website = models.URLField(null=True, blank=True)
-#     picture = models.ImageField(upload_to='profile_images', blank=True)
-#     description = models.TextField(null=True, blank=True)
-#     timestamp = models.DateTimeField(default=timezone.now, blank=True)
-
-#     slug = models.SlugField(max_length=40, default=User.objects.get(user).get_username())
-
-#     @receiver(post_save, sender=User)
-#     def create_user_profile(self, sender, instance, created, **kwargs):
-#         if created:
-#             UserProfile.objects.create(user=instance)
-
-#     @receiver(post_save, sender=User)
-#     def save_user_profile(self, sender, instance, **kwargs):
-#         instance.profile.save()
-
-#     def __str__(self):
-#          return self.user.username
-
-#     def save(self, *args, **kwargs):
-#         self.slug=slugify(self.user.username)
-#         super(UserProfile,self).save(*args, **kwargs)
-
 class UserProfile(AbstractUser):
     critic = models.BooleanField(default=False)
     website = models.URLField(null=True, blank=True)
@@ -80,19 +52,24 @@ class Category(models.Model):
 
 class Game(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length = 64)
-    user_score = models.FloatField()
-    num_user_ratings = models.IntegerField()
-    critic_score = models.FloatField()
-    num_critic_ratings = models.IntegerField()
-    age_rating = models.CharField(max_length = 16)
-    description = models.TextField()
-    releasedate = models.DateField()
+    name = models.CharField(max_length=64)
+
+    avg_user_rating = models.FloatField(default=0)
+    num_user_ratings = models.IntegerField(default=0)
+    avg_critic_rating = models.FloatField(default=0)
+    num_critic_ratings = models.IntegerField(default=0)
+
+    age_rating = models.CharField(max_length=16)
+    description = models.TextField(null=True, blank=True)
+    releasedate = models.DateField(null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     #images blank atm for testing
     #picture = models.ImageField(upload_to='game_images',blank=True)
 
     slug = models.SlugField(max_length=40, default=id)
+
+    # def __init__(self):
+
 
     def save(self, *args, **kwargs):
         self.slug=slugify(self.name)
@@ -122,4 +99,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
-	

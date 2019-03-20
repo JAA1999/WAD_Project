@@ -1,0 +1,27 @@
+{% extends 'RNG/base.html' %}
+
+{% load staticfiles %}
+{% block body_block %}
+<div class="body centre">
+	{% if category %}
+		{% for cat in category %}
+		<a href="{% url 'category' cat.slug %}">TestLink</a><br/>
+		<div class = "mostViewed centre">    
+			<div class = "MVimageBlock ib">
+				<img src={% static "images/largeGame.jpg"%}>
+			</div>
+			<div class = "MVtext">
+				<div class = "MVTitle">{{cat.name}}</div>        
+			</div>
+		</div>
+		
+		{% endfor %}
+	{% else %}
+	<div class = "mostViewed centre">
+        <div class = "MVtext">
+            <div class = "MVTitle">There are no categories to display.</div>            
+        </div>
+    </div>
+	{% endif %}
+</div>
+{% endblock %}

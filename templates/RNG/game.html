@@ -2,10 +2,30 @@
 
 {% load staticfiles %}
 
-{% block title_block %}
-	<title>Rate New Games ~ GAME NAME TAG GOES HERE</title>
-{% endblock %}
-
 {% block body_block %}
-Game page nonsense.
+<div class="body centre">
+	{% if game %}
+    <div class = "mostViewed centre">
+        <div class = "MVimageBlock ib">
+            <img src={% static "images/largeGame.jpg"%}>
+        </div>
+        <div class = "MVtext">
+            <div class = "MVTitle">{{game.name}}</div>          
+            <div class = "MVdescription pt">
+                <pre>{{game.description}}</pre>
+            </div>
+            <div class="rating_container centre">
+                <div class="ib">Critic rating:</div>
+                <div class = "rating ib"><p class="fc centre">Placeholder</p></div>
+            </div>
+			<div class="rating_container centre">
+                <div class="ib">User rating:</div>
+                <div class = "rating ib"><p class="fc centre">Placeholder</p></div>
+            </div>
+        </div>
+	{% else %}
+		Something went wrong.
+	{% endif %}
+    </div>
+</div>
 {% endblock %}
