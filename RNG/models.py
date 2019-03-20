@@ -3,7 +3,14 @@ from django.utils import timezone
 import uuid
 
 from django.template.defaultfilters import slugify
-from django.contrib.auth.models import User
+
+# New AbstractBaseUser extension
+from django.contrib.auth.models import AbstractUser
+
+#Jason's User extension
+#from django.contrib.auth.models import User
+# from django.db.models.signals import post_save
+# from django.dispatch import receiver
 
 
 # Database Objects
@@ -11,11 +18,36 @@ from django.contrib.auth.models import User
 
 # ID refs should autogenerate
 
-class UserProfile(models.Model):
+# class UserProfile(models.Model):
 	
-    user = models.OneToOneField(User)
+#     user = models.OneToOneField(User)
+#     critic = models.BooleanField(default=False)
+	
+#     website = models.URLField(null=True, blank=True)
+#     picture = models.ImageField(upload_to='profile_images', blank=True)
+#     description = models.TextField(null=True, blank=True)
+#     timestamp = models.DateTimeField(default=timezone.now, blank=True)
+
+#     slug = models.SlugField(max_length=40, default=User.objects.get(user).get_username())
+
+#     @receiver(post_save, sender=User)
+#     def create_user_profile(self, sender, instance, created, **kwargs):
+#         if created:
+#             UserProfile.objects.create(user=instance)
+
+#     @receiver(post_save, sender=User)
+#     def save_user_profile(self, sender, instance, **kwargs):
+#         instance.profile.save()
+
+#     def __str__(self):
+#          return self.user.username
+
+#     def save(self, *args, **kwargs):
+#         self.slug=slugify(self.user.username)
+#         super(UserProfile,self).save(*args, **kwargs)
+
+class UserProfile(AbstractUser):
     critic = models.BooleanField(default=False)
-	
     website = models.URLField(null=True, blank=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
     description = models.TextField(null=True, blank=True)
@@ -23,12 +55,12 @@ class UserProfile(models.Model):
 
     slug = models.SlugField(max_length=40)
 
-    def __str__(self):
-         return self.user.username
-
     def save(self, *args, **kwargs):
-        self.slug=slugify(self.user.username)
-        super(UserProfile,self).save(*args, **kwargs)
+        self.slug=slugify(self.username)
+        super(UserProfile, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.username
 
 class Category(models.Model):
     name = models.CharField(max_length=64)
@@ -49,18 +81,18 @@ class Category(models.Model):
 class Game(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length = 64)
-
     user_score = models.FloatField()
     num_user_ratings = models.IntegerField()
     critic_score = models.FloatField()
     num_critic_ratings = models.IntegerField()
-
     age_rating = models.CharField(max_length = 16)
     description = models.TextField()
     releasedate = models.DateField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    #images blank atm for testing
+    #picture = models.ImageField(upload_to='game_images',blank=True)
 
-    slug = models.SlugField(max_length=40)
+    slug = models.SlugField(max_length=40, default=id)
 
     def save(self, *args, **kwargs):
         self.slug=slugify(self.name)
@@ -73,7 +105,7 @@ class Game(models.Model):
 class Rating(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     score = models.FloatField()
-    username = models.ForeignKey(User, on_delete=models.CASCADE)
+    username = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     critic_rating = models.BooleanField()   # optional
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     comment = models.TextField()
@@ -82,7 +114,7 @@ class Rating(models.Model):
 class Comment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     text = models.TextField()
     timestamp = models.DateTimeField(default=timezone.now, blank = True)
 

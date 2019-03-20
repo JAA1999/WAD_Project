@@ -23,17 +23,22 @@
           <div class= "title2 ib">com</div>
         </div>
       
-        <div class="signinBlock ib">
+
 			{% if user.is_authenticated %}
+				
+				
+				<div class="signedinBlock ib">
 				<div class="Welcome"><u>Welcome {{ user.username }}</u></div>
-				<a href="{% url 'signout' %}"><button class="signin ">Sign Out</button></div></a>
+				<a href="{% url 'auth_password_change' %}"><div><button class="signin ">Change Password</button></div></a>
+				<a href="{% url 'signout' %}"><div><button class="signin ">Sign Out</button></div></a>
+				</div>
 			{% else %}
+			    <div class="signinBlock ib">
 				<a href="{% url 'auth_login' %}"><div><button class="signin ">Sign In</button></div></a>
-				<a href="{% url 'signup' %}"><div><button class="signin ">Sign Up</button></div></a>
+				<a href="{% url 'registration_register' %}"><div><button class="signin ">Sign Up</button></div></a>
+				</div>
 			{% endif %}
-        </div>
         
-      </div>
     </div>
 
     <div class="head2">
@@ -75,10 +80,18 @@
         <div class="line"></div>
         
         <div class="ib searchBlock padleft">
-          <form class="ib">
-            <input class="input" type="text" name="search" placeholder="Search">
-          </form>
-          <button class="ib searchButton">GO</button>
+          <script>
+            (function() {
+              var cx = '010899622192003857692:ya2aiodpztu';
+              var gcse = document.createElement('script');
+              gcse.type = 'text/javascript';
+              gcse.async = true;
+              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+              var s = document.getElementsByTagName('script')[0];
+              s.parentNode.insertBefore(gcse, s);
+            })();
+          </script>
+          <gcse:search></gcse:search>
         </div>
         
       </div>

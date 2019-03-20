@@ -172,6 +172,12 @@ img{
       top: 55px;
 }
 
+.signedinBlock{
+      position: absolute;
+      right: 60px;
+      top: 35px;
+}
+
 
 /*The container holding the games*/
 .gameContainer{

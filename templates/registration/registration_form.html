@@ -32,7 +32,8 @@
 				{{ form.as_p }}
 				<input type="submit" name="submit" value="Sign Up" />
 			</form>
-			Already have an account? <a href="{% url 'signin' %}">Sign in here!</a>
+			<br />
+			Already have an account? <a href="{% url 'auth_login' %}">Sign in here!</a>
 		{% endif %}
 		</div>
 	</body>

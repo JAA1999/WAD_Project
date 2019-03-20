@@ -22,7 +22,7 @@
 		<br /><br />
 		{% if registered %}
 			<b>You are now registered! Follow this link to
-			<a href="{% url 'signin' %}">sign in.</a></b>
+			<a href="{% url 'auth_login' %}">sign in.</a></b>
 			<br />
 		{% else %}
 			<b>Please fill out the forms below to sign up.</b>
@@ -33,7 +33,7 @@
 				{{ profile_form.as_p }}
 				<input type="submit" name="submit" value="Sign Up" />
 			</form>
-			Already have an account? <a href="{% url 'signin' %}">Sign in here!</a>
+			Already have an account? <a href="{% url 'auth_login' %}">Sign in here!</a>
 		{% endif %}
 		</div>
 	</body>

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 	'registration'
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -135,9 +136,8 @@ USE_L10N = True
 USE_TZ = True
 
 #Media files
-MEDIA_ROOT=MEDIA_DIR
-
-MEDIA_URL='/media/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -153,3 +153,5 @@ LOGIN_REDIRECT_URL = "/rng/"
 LOGIN_URL='/accounts/login/'
 
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
+
+AUTH_USER_MODEL = 'RNG.UserProfile' # UserProfile model extending AbstractUser
