@@ -89,7 +89,7 @@ class Rating(models.Model):
     timestamp = models.DateTimeField(default=timezone.now, blank = True)
 
 class Comment(models.Model):
-    comment_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
