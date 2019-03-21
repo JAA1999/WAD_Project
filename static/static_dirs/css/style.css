@@ -1,6 +1,10 @@
-@font-face {
-      font-family: "Title";
-      src: url("Title.ttf");
+@font-face {font-family: "Title";
+    src: url("//db.onlinewebfonts.com/t/77dbd0c6619dff4c29d3390d42d6db42.eot");
+    src: url("//db.onlinewebfonts.com/t/77dbd0c6619dff4c29d3390d42d6db42.eot?#iefix") format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/77dbd0c6619dff4c29d3390d42d6db42.woff2") format("woff2"),
+    url("//db.onlinewebfonts.com/t/77dbd0c6619dff4c29d3390d42d6db42.woff") format("woff"),
+    url("//db.onlinewebfonts.com/t/77dbd0c6619dff4c29d3390d42d6db42.ttf") format("truetype"),
+    url("//db.onlinewebfonts.com/t/77dbd0c6619dff4c29d3390d42d6db42.svg#Cinema Gothic BTN Inline") format("svg");
 }
 
 /*these are overwrites of standard css*/

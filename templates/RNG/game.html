@@ -28,7 +28,7 @@
     </div>
 		
 		<div class="comments">
-			<div class= "title2 ib">{{ comments.count }} Comment{{ comments|pluralize }}</div>
+			<div class= "MVTitle ib">{{ comments.count }} Comment{{ comments|pluralize }}</div>
 			{% if user.is_authenticated %}
 				<form method='post' action=".">
 					{% csrf_token %}

@@ -11,7 +11,6 @@
 		{% endblock %}
 	{% load static %}
 	<link href={% static "css/style.css" %} rel="stylesheet" type="text/css" />
-    
   </head>
   <body>
     <div class="head">
@@ -38,9 +37,9 @@
 				<a href="{% url 'registration_register' %}"><div><button class="signin ">Sign Up</button></div></a>
 				</div>
 			{% endif %}
-        
+        </div>
     </div>
-    </div>
+
     <div class="head2">
       <div class="top-square2 sticky centre">
         
@@ -75,19 +74,27 @@
         <div class="line"></div>
         
         <div class="ib searchBlock padleft">
-            <form method="get" id="searchform" id="searchbox_007301268677233961693:36-nzkwdslc" action="result.html">
-            <div>
-                <input class="searchButton" value="010899622192003857692:ya2aiodpztu" name="cx" type="hidden"/>
-                <input class="searchButton" value="FORID:11" name="cof" type="hidden"/>
-                <input type="text" placeholder="search" name="s" id="s" onfocus="defaultInput(this)" onblur="clearInput(this)" />
-                <input class="searchButton" type="submit" id="searchsubmit" value="GO" />
-            </div>
-            </form>  
-          <gcse:search></gcse:search>
+            <form class="ib">
+            <input type="text" name="search" placeholder="Search">
+            </form>
+          <button class="ib searchButton">GO</button>
         </div>
-        
+        </div>
       </div>
     </div>
+    <div>
+        <script>
+            (function() {
+              var cx = '010899622192003857692:ya2aiodpztu';
+              var gcse = document.createElement('script');
+              gcse.type = 'text/javascript';
+              gcse.async = true;
+              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+              var s = document.getElementsByTagName('script')[0];
+              s.parentNode.insertBefore(gcse, s);
+            })();
+          </script>
+          <gcse:search></gcse:search>
     </div>
 	{% block body_block %}
 	{% endblock %}

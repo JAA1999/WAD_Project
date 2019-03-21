@@ -16,6 +16,7 @@ from django.contrib.auth.models import Permission
 # Remember to migrate!
 # Use python manage.py migrate --run-syncdb
 
+
 class UserProfile(AbstractUser):
     # AbstractUser relevant fields:
     # username, password, first_name, last_name, date_joined, email, last_login
@@ -58,9 +59,9 @@ class Game(models.Model):
     age_rating = models.CharField(max_length=16)
     description = models.TextField(null=True, blank=True)
     release_date = models.DateField(null=True, blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-	
-	is_approved = models.BooleanField(default=False)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
+
+    is_approved = models.BooleanField(default=False)
 
     slug = models.SlugField(max_length=40)
 
@@ -104,7 +105,7 @@ class Rating(models.Model):
 class Comment(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    rating = models.ForeignKey(Rating, on_delete=models.CASCADE, null=True, blank=True)
+    rating = models.ForeignKey(Rating, on_delete=models.SET_NULL, null=True, blank=True)
     content = models.CharField(max_length=2000)
     timestamp = models.DateTimeField(default=timezone.now, blank=True)
     supercomment = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
@@ -120,4 +121,4 @@ class Comment(models.Model):
     def __str__(self):
         return '{} - {}'.format(self.game.name, str(self.user.username))
 
-
+# import RNG.signals
